@@ -7,8 +7,15 @@
 </head>
 <body class="bg-slate-900 text-white min-h-screen p-4">
     <div class="max-w-2xl mx-auto mt-10"> 
-        <h1 class="text-4xl font-black text-center mb-2 text-blue-500">DUCHAT MAIL</h1>
+        <h1 class="text-4xl font-black text-center mb-2 bg-gradient-to-r from-blue-400 to-indigo-600 bg-clip-text text-transparent">DUCHAT MAIL</h1>
         <p class="text-center text-slate-400 mb-8">Твоя анонимная почта на 30 минут</p>
+
+        
+<div id="timer-container" class="flex flex-col items-start px-2 mb-4 hidden">
+    <span class="text-[9px] uppercase tracking-[0.1em] text-slate-600">Сессия истечет через</span>
+    <div id="countdown" class="font-mono text-slate-500 text-xs font-bold">30:00</div>
+</div>
+
 
         <div id="address-selector" class="grid grid-cols-1 gap-4 mb-8">
             </div>
@@ -23,6 +30,7 @@
             </div>
         </div>
     </div>
+    
     <script src="app.js"></script>
 </body>
 <style>
@@ -98,18 +106,24 @@
         <span class="github-text">View Source</span>
     </div>
 </a>
-<footer class="mt-10 pb-10 text-center">
-    <p class="text-[10px] text-slate-600 px-4 leading-relaxed mb-4">
-        Сервис предоставляется «как есть». Мы не храним ваши данные дольше 30 минут и не несем ответственности за действия пользователей.
-    </p>
+<footer class="mt-12 mb-8 px-4">
+    <div class="max-w-2xl mx-auto bg-slate-800/30 border border-slate-700/50 rounded-2xl p-6 text-center backdrop-blur-sm">
+        
+        <p class="text-[10px] text-slate-500 leading-relaxed mb-6 max-w-md mx-auto">
+            Сервис предоставляется «как есть». Мы не храним ваши данные дольше 30 минут и не несем ответственности за действия пользователей.
+        </p>
 
-    <a href="https://yoomoney.ru/fundraise/1H91F4B2683.260420" target="_blank" class="text-[11px] text-slate-500 hover:text-blue-400 transition-colors border border-slate-700 px-3 py-1 rounded-full inline-block mb-4">
-        Поддержать проект
-    </a>
+        <div class="flex flex-col items-center gap-4">
+            <a href="https://yoomoney.ru/fundraise/1H91F4B2683.260420" target="_blank" 
+               class="text-[11px] text-slate-300 hover:text-blue-400 transition-all border border-slate-700 hover:border-blue-500/50 px-6 py-2 rounded-full bg-slate-900/50">
+                Поддержать проект
+            </a>
 
-    <p class="text-[11px] font-mono text-slate-600 tracking-widest uppercase">
-        c0ded by <span class="text-slate-500">bogdashss</span>
-    </p>
+            <p class="text-[11px] font-mono text-slate-600 tracking-widest uppercase">
+                coded by <span class="text-slate-400">bogdashss</span>
+            </p>
+        </div>
+    </div>
 </footer>
 
 </html>

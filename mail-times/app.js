@@ -5,7 +5,22 @@ let activeEmail = "";
 /**
  * Получает список адресов из LocalStorage или генерирует новые
  */
-function getMyAddresses() {
+
+
+async function getUserKey() {
+    try {
+        // Используем бесплатный сервис для получения IP
+        const response = await fetch('https://api.ipify.org?format=json');
+        const data = await response.json();
+        return "timestamp_" + data.ip.replace(/\./g, '_'); // Превращаем 1.2.3.4 в 1_2_3_4
+    } catch (e) {
+        // Если сервис IP не ответил, используем старый метод
+        return "mails_timestamp"; 
+    }
+}
+
+
+async function getMyAddresses() {
     let savedMails = localStorage.getItem("my_temp_mails");
     let timestamp = localStorage.getItem("mails_timestamp");
     let now = Date.now();
@@ -39,7 +54,8 @@ function getMyAddresses() {
 
     // Сохраняем в кэш браузера
     localStorage.setItem("my_temp_mails", JSON.stringify(newAddresses));
-    localStorage.setItem("mails_timestamp", now.toString());
+    const ipKey = await getUserKey();
+    localStorage.setItem(ipKey,now.toString);
     
     return newAddresses;
 }
@@ -141,6 +157,7 @@ async function loadEmails() {
  */
 
 function startTimer() {
+    const ipKey = await getUserKey();
     const timerContainer = document.getElementById("timer-container");
     const timerDisplay = document.getElementById("countdown");
     
@@ -171,16 +188,19 @@ function startTimer() {
         // Показываем контейнер, если время идет
         timerContainer.classList.remove("hidden");
 
+        // Внутри функции update
         const minutes = Math.floor((timeLeft / 1000 / 60) % 60);
         const seconds = Math.floor((timeLeft / 1000) % 60);
 
-        // Обновляем текст
         timerDisplay.innerText = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-        
-        // Красивый эффект, если осталось мало времени
-        if (timeLeft < 300000) { // 5 минут
-            timerDisplay.classList.add("text-red-500", "animate-pulse");
-            timerDisplay.classList.remove("text-blue-400");
+
+        // Логика спокойных цветов
+        if (timeLeft < 300000) { // последние 5 минут
+            timerDisplay.classList.remove("text-slate-500");
+            timerDisplay.classList.add("text-orange-700/80"); // Неяркий оранжевый вместо вырвиглазного красного
+        } else {
+            timerDisplay.classList.add("text-slate-500");
+            timerDisplay.classList.remove("text-orange-700/80", "text-blue-400", "animate-pulse");
         }
     };
 
@@ -194,5 +214,7 @@ function startChecking() {
 }
 
 // Инициализация при загрузке
-startTimer();
-renderSelector();
+(async () => {
+    startTimer();
+    renderSelector();
+})

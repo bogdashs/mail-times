@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Duchat Mail - Временная почта</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-white min-h-screen p-4">
+    <div class="max-w-2xl mx-auto mt-10">
+        <h1 class="text-4xl font-black text-center mb-2 text-blue-500">DUCHAT MAIL</h1>
+        <p class="text-center text-slate-400 mb-8">Твоя анонимная почта на 30 минут</p>
+
+        <div id="address-selector" class="grid grid-cols-1 gap-4 mb-8">
+            </div>
+
+        <div id="mail-viewer" class="hidden">
+            <div class="flex justify-between items-center mb-4 border-b border-slate-700 pb-2">
+                <h2 id="current-address" class="text-xl font-bold text-blue-400"></h2>
+                <button onclick="location.reload()" class="text-xs text-slate-500 underline">Сменить адрес</button>
+            </div>
+            <div id="email-list" class="space-y-4">
+                <p class="text-center text-slate-500 py-20">Ждем писем...</p>
+            </div>
+        </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+<footer class="mt-10 pb-10 text-center">
+    <p class="text-[10px] text-slate-600 px-4 leading-relaxed mb-4">
+        Сервис предоставляется «как есть». Мы не храним ваши данные дольше 30 минут и не несем ответственности за действия пользователей.
+    </p>
+
+    <a href="https://yoomoney.ru/fundraise/1H91F4B2683.260420" target="_blank" class="text-[11px] text-slate-500 hover:text-blue-400 transition-colors border border-slate-700 px-3 py-1 rounded-full inline-block mb-4">
+        Поддержать проект
+    </a>
+
+    <p class="text-[11px] font-mono text-slate-600 tracking-widest uppercase">
+        c0ded by <span class="text-slate-500">bogdashss</span>
+    </p>
+</footer>
+
+</html>

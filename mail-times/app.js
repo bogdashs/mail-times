@@ -131,5 +131,3 @@ function startChecking() {
     await startTimer();
     await renderSelector();
 })();
-
-

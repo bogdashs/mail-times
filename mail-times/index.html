@@ -9,9 +9,8 @@
     <div class="max-w-2xl mx-auto mt-10"> 
         <h1 class="text-4xl font-black text-center mb-2 bg-gradient-to-r from-blue-400 to-indigo-600 bg-clip-text text-transparent">DUCHAT MAIL</h1>
         <p class="text-center text-slate-400 mb-8">Твоя анонимная почта на 30 минут</p>
-
         
-<div id="timer-container" class="flex flex-col items-start px-2 mb-4 hidden">
+<div id="timer-container" class="flex flex-col items-start px-2 mb-4">
     <span class="text-[9px] uppercase tracking-[0.1em] text-slate-600">Сессия истечет через</span>
     <div id="countdown" class="font-mono text-slate-500 text-xs font-bold">30:00</div>
 </div>
@@ -21,17 +20,49 @@
             </div>
 
         <div id="mail-viewer" class="hidden">
-            <div class="flex justify-between items-center mb-4 border-b border-slate-700 pb-2">
-                <h2 id="current-address" class="text-xl font-bold text-blue-400"></h2>
-                <button onclick="location.reload()" class="text-xs text-slate-500 underline">Сменить адрес</button>
-            </div>
-            <div id="email-list" class="space-y-4">
-                <p class="text-center text-slate-500 py-20">Ждем писем...</p>
-            </div>
-        </div>
-    </div>
+<div class="flex justify-between items-center mb-6">
+    <h2 id="current-address" class="text-xl font-mono text-blue-400"></h2>
     
+    <button id="delete-addr-btn" onclick="deleteThisAddress()" 
+            class="hidden bg-red-600/20 text-red-500 border border-red-500/50 px-4 py-2 rounded-xl hover:bg-red-600 hover:text-white transition text-xs font-bold uppercase">
+        Удалить этот ящик
+    </button>
+</div>
+    </div>
+
+    <div id="admin-sidebar" class="fixed top-24 right-5 w-64 bg-slate-800/80 backdrop-blur-md border border-slate-700 rounded-2xl p-4 shadow-2xl z-50">
+    <div id="auth-form">
+        <p class="text-[10px] text-slate-500 uppercase tracking-widest mb-3 text-center">Private Access</p>
+        <input type="password" id="sidebar-code" placeholder="Код доступа" 
+               class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white mb-2 focus:border-blue-500 outline-none">
+        <button onclick="checkSidebarCode()" 
+                class="w-full bg-blue-600 hover:bg-blue-700 text-white text-sm font-bold py-2 rounded-lg transition">
+            Разблокировать
+        </button>
+    </div>
+
+    <div id="admin-menu" class="hidden animate-fade-in">
+        <div class="flex items-center gap-2 mb-4 pb-2 border-b border-slate-700">
+            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span class="text-xs font-bold text-slate-300 uppercase">Admin Mode</span>
+        </div>
+        
+        <label class="text-[10px] text-slate-500 uppercase">Создать свой адрес:</label>
+        <div class="flex gap-2 mt-1 mb-4">
+            <input type="text" id="custom-name" placeholder="name" 
+                   class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2 text-sm text-white outline-none focus:border-green-500">
+            <button onclick="createCustomEmail()" class="bg-green-600 px-3 rounded-lg hover:bg-green-700 transition">+</button>
+        </div>
+
+        <button onclick="clearAllMails()" class="w-full border border-red-900/50 text-red-500 text-[10px] py-1 rounded hover:bg-red-500/10 transition">
+            ОЧИСТИТЬ ВСЕ ПИСЬМА
+        </button>
+    </div>
+</div>
+
+
     <script src="app.js"></script>
+    <script src="admin.js"></script>
 </body>
 <style>
     :root {
